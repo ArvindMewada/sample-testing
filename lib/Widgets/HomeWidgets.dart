@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:sample/DataModel/ProductDataModel.dart';
-import 'package:sample/Screens/DetailsScreen.dart';
+import 'package:sample/Widgets/DetailsScreenWidget.dart';
 
 class ProductList extends StatelessWidget {
   final List<dynamic> productList;
@@ -15,8 +15,12 @@ class ProductList extends StatelessWidget {
           return GestureDetector(
             behavior: HitTestBehavior.translucent,
             onTap: () {
-              Navigator.pushNamed(context, DetailsScreen.routeName,
-                  arguments: productList[index]);
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => DetailsScreen(productDataModel: productList[index],),
+                ),
+              );
             },
             child: new Card(
               child: new Container(
