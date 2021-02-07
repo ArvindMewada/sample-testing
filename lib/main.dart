@@ -1,4 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:sample/Screens/DetailsScreen.dart';
+import 'package:sample/Screens/HomeScreen.dart';
+
+import 'Screens/SplashScreen.dart';
 
 void main() {
   runApp(MyApp());
@@ -28,18 +32,23 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
+  final routes = <String, WidgetBuilder>{
+    //Initial
+    SplashScreen.routeName: (context) => SplashScreen(),
+    HomeScreen.routeName: (context) => HomeScreen(),
+    DetailsScreen.routeName: (context) => DetailsScreen(),
+  };
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text(widget.title),
+        body: SafeArea(
+      child: MaterialApp(
+        title: 'sample',
+        debugShowCheckedModeBanner: false,
+        home: SplashScreen(),
+        routes: routes,
       ),
-      body: SafeArea(
-        child: Container(
-          child: Text("hellon"),
-        ),
-      )
-    );
+    ));
   }
 }
